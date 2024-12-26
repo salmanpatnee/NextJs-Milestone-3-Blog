@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1",
+    "title": "Getting Started with Next.js",
+    "slug": "getting-started-with-nextjs",
+    "meta_title": "Getting Started with Next.js: A Beginner\u2019s Guide",
+    "meta_description": "Learn how to build your first Next.js app. This beginner\u2019s guide covers installation, key features, and tips to get you started with Next.js.",
+    "introduction": "Next.js is a powerful React framework for building fast, scalable web applications. In this blog, we\u2019ll guide you through setting up your first Next.js project and exploring its core features.",
+    "content": [
+      "Install Node.js: Download and install Node.js from the official website. (https://nodejs.org/)",
+      "Set Up Your Project: Run the following commands - npx create-next-app@latest my-nextjs-app, cd my-nextjs-app, npm run dev.",
+      "Explore the Basics: Navigate to http://localhost:3000 to view your app. Learn about file-based routing, static, and dynamic pages.",
+      "Create a New Page: Add a new file in the 'pages' directory, for example, 'about.js', and define a simple React component to render on that page.",
+      "Use Static Generation: Learn how to pre-render pages at build time by using 'getStaticProps' in your page components.",
+      "Add Styles: Use CSS, Sass, or Styled Components to style your app. Update the default styles or create your own.",
+      "Deploy Your App: Once you're satisfied with your app, deploy it to Vercel or another hosting provider for production use."
+    ],
+    "conclusion": "Congratulations! You\u2019ve set up your first Next.js app. Stay tuned for more tutorials as we dive deeper into advanced features like API routes and server-side rendering.",
+    "image_url": "/images/blog/laptop.png", 
+    "published_data": "26 Dec 2024", 
+    "author": "Admin"
+  },
+  {
+    "id": "2",
+    "title": "Boosting SEO with Next.js",
+    "slug": "boosting-seo-with-nextjs",
+    "meta_title": "Boosting SEO in Next.js: Techniques and Best Practices",
+    "meta_description": "Discover how Next.js enhances SEO with server-side rendering, dynamic meta tags, and other optimization techniques.",
+    "introduction": "SEO is critical for your web application's visibility. Next.js offers built-in features like server-side rendering (SSR) and static site generation (SSG) to optimize your site for search engines.",
+    "content": [
+      "Dynamic Meta Tags: Set dynamic meta tags using the Next.js Head component.",
+      "Image Optimization: Use Next.js's next/image for optimized images.",
+      "Structured Data: Add JSON-LD for rich search results.",
+      "API Routes: Create backend logic with Next.js API routes.",
+      "Incremental Static Regeneration: Update static content without rebuilding the whole site.",
+      "Custom Document: Modify the default HTML structure in _document.js.",
+      "Error Handling: Create custom error pages for better user experience."
+    ],
+    "conclusion": "With Next.js, SEO optimization is straightforward. Implement these techniques to enhance your site's visibility and attract more traffic.",
+    "image_url": "/images/blog/Getting-Started with-Next.js.jpg", 
+    "published_data": "25 Dec 2024", 
+    "author": "Admin"
+  },
+  {
+    "id": "3",
+    "title": "Building a Blog with Next.js",
+    "slug": "building-a-blog-with-nextjs",
+    "meta_title": "How to Build a Blog with Next.js",
+    "meta_description": "Step-by-step tutorial on building a dynamic blog using Next.js, complete with routing, API integration, and styling.",
+    "introduction": "Want to create a dynamic blog? Next.js simplifies the process with its file-based routing and powerful features. Follow this guide to build a blog from scratch.",
+    "content": [
+      "Set Up Your Blog Project: Run the following commands - npx create-next-app@latest next-blog, cd next-blog.",
+      "Create Blog Pages: Add a pages/blog directory and create dynamic routes using [slug].js.",
+      "Fetch Blog Data: Use the following code to fetch data:\nexport async function getStaticProps() {\n  const res = await fetch('https://api.example.com/blogs');\n  const blogs = await res.json();\n\n  return {\n    props: { blogs },\n  };\n}",
+      "Style Your Blog: Use CSS Modules or Tailwind CSS for styling.",
+      "Create a Blog Post Component: Build a reusable component to display individual blog posts.",
+      "Add Navigation: Implement a navigation bar for easy access to different parts of your blog.",
+      "Deploy Your Blog: Deploy your Next.js blog to Vercel or another hosting platform for public access.",
+      "Add Comments Section: Integrate a comments system like Disqus or create a custom comment form."
+    ],
+    "conclusion": "By following this guide, you\u2019ve built a fully functional blog with Next.js. Customize it further with features like comments or tags to make it unique.",
+    "image_url": "/images/blog/Building-a-Blog with-Next.js.jpg", 
+    "published_data": "24 Dec 2024", 
+    "author": "Admin"
+  }
+]

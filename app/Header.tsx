@@ -1,26 +1,18 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import Navbar from "./components/Navbar";
 import { Heart, Search, UserRound } from "lucide-react";
+import Link from "next/link";
 import MobileNavbar from "./components/MobileNavbar";
+import Navbar from "./components/Navbar";
 
 import MiniCart from "./components/MiniCart";
 
 const Header = () => {
   return (
     <header className="border border-b py-8">
-      <div className="wrapper flex items-center justify-between">
+      <div className="wrapper flex items-center gap-16">
         {/* Logo Section */}
         <div className="col logo w-full text-center md:w-auto">
           <Link href="/" className="flex items-center gap-1">
-            <Image
-              src="/images/logo-icon.png"
-              alt="Furniro Logo"
-              width={50}
-              height={32}
-            />
-            <h1 className="font-bold text-[34px]">Furniro</h1>
+            <h1 className="font-bold text-[34px] text-primary">NextBlog</h1>
           </Link>
         </div>
 
@@ -34,37 +26,7 @@ const Header = () => {
           <MobileNavbar />
         </div>
 
-        {/* Action Section (User Account, Search, Wishlist, Cart) */}
-        <div className="col action hidden lg:block">
-          <div className="flex space-x-11 items-center justify-end">
-            {/* User Profile Icon */}
-            <Link href="/" className="group">
-              <UserRound
-                size={32}
-                className="stroke-current text-black transition-colors group-hover:stroke-primary"
-              />
-            </Link>
-
-            {/* Search Icon */}
-            <Link href="/" className="group">
-              <Search
-                size={32}
-                className="stroke-current text-black transition-colors group-hover:stroke-primary"
-              />
-            </Link>
-
-            {/* Wishlist Icon */}
-            <Link href="/" className="group">
-              <Heart
-                size={32}
-                className="stroke-current text-black transition-colors group-hover:stroke-primary"
-              />
-            </Link>
-
-            {/* Shopping Cart Icon with Popover for Cart Items */}
-            <MiniCart/>
-          </div>
-        </div>
+    
       </div>
     </header>
   );

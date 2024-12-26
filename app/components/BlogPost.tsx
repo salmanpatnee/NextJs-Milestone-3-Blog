@@ -2,32 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, TagIcon, User } from "lucide-react";
 
-interface BlogPostProps {
-  imageSrc: string;
-  imageAlt: string;
-  author: string;
-  date: string;
-  category: string;
+type Blog = {
+  id: string | number;
   title: string;
+  slug: string;
+  meta_title: string;
+  meta_description: string;
+  introduction: string;
   content: string;
-  link: string;
+  image_url: string;
+  published_data: string;
+  author: string;
+  conclusion: string;
+};
+
+interface Props {
+  blog: Blog;
 }
 
-const BlogPost: React.FC<BlogPostProps> = ({
-  imageSrc,
-  imageAlt,
-  author,
-  date,
-  category,
-  title,
-  content,
-  link,
-}) => {
+const BlogPost = ({ blog }: Props) => {
   return (
     <article className="mb-14">
       <Image
-        src={imageSrc}
-        alt={imageAlt}
+        src={blog.image_url}
+        alt={blog.title}
         width={817}
         height={500}
         className="rounded mb-4"
@@ -35,22 +33,22 @@ const BlogPost: React.FC<BlogPostProps> = ({
       <div className="mb-5">
         <ul className="flex items-center gap-8 text-base text-[#9F9F9F]">
           <li>
-            <User size={15} className="inline-block fill-[#9F9F9F]" /> {author}
+            <User size={15} className="inline-block fill-[#9F9F9F]" /> {blog.author}
           </li>
           <li>
             <Calendar size={15} className="inline-block stroke-[#9F9F9F]" />{" "}
-            {date}
+            {blog.published_data} {/* Fixed this to display the correct date */}
           </li>
           <li>
             <TagIcon size={15} className="inline-block stroke-[#9F9F9F]" />{" "}
-            {category}
+            Tutorials
           </li>
         </ul>
       </div>
-      <h2 className="font-medium text-3xl mb-3">{title}</h2>
-      <p className="text-base text-[#9F9F9F] mb-7">{content}</p>
+      <h2 className="font-medium text-3xl mb-3">{blog.title}</h2>
+      <p className="text-base text-[#9F9F9F] mb-7">{blog.introduction}</p>
       <Link
-        href={link}
+        href={`/blogs/${blog.slug}`}
         className="text-base border-b pb-3 border-black hover:text-primary transition-all"
       >
         Read more

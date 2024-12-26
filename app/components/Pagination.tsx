@@ -11,17 +11,17 @@ const Pagination = () => {
         </li>
   
         {/* Page 2 */}
-        <li className="cursor-pointer w-[50px] lg:w-[60px] h-[50px] lg:h-[60px] rounded-lg font-normal bg-[#F9F1E7] flex items-center justify-center text-lg lg:text-xl hover:bg-primary hover:text-white transition">
+        <li className="cursor-pointer w-[50px] lg:w-[60px] h-[50px] lg:h-[60px] rounded-lg font-normal bg-[#EDF2F7] flex items-center justify-center text-lg lg:text-xl hover:bg-primary hover:text-white transition">
           2
         </li>
   
         {/* Page 3 */}
-        <li className="cursor-pointer w-[50px] lg:w-[60px] h-[50px] lg:h-[60px] rounded-lg font-normal bg-[#F9F1E7] flex items-center justify-center text-lg lg:text-xl hover:bg-primary hover:text-white transition">
+        <li className="cursor-pointer w-[50px] lg:w-[60px] h-[50px] lg:h-[60px] rounded-lg font-normal bg-[#EDF2F7] flex items-center justify-center text-lg lg:text-xl hover:bg-primary hover:text-white transition">
           3
         </li>
   
         {/* Next */}
-        <li className="cursor-pointer w-[80px] lg:w-[100px] h-[50px] lg:h-[60px] rounded-lg font-normal bg-[#F9F1E7] flex items-center justify-center text-lg lg:text-xl hover:bg-primary hover:text-white transition">
+        <li className="cursor-pointer w-[80px] lg:w-[100px] h-[50px] lg:h-[60px] rounded-lg font-normal bg-[#EDF2F7] flex items-center justify-center text-lg lg:text-xl hover:bg-primary hover:text-white transition">
           Next
         </li>
       </ul>
