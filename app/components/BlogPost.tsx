@@ -9,7 +9,7 @@ type Blog = {
   meta_title: string;
   meta_description: string;
   introduction: string;
-  content: string;
+  content: string[];
   image_url: string;
   published_data: string;
   author: string;
