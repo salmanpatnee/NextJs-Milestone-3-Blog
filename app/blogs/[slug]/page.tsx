@@ -59,7 +59,7 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                 {blog.introduction}
               </p>
 
-              {blog.content.map(line => <p className="text-base  mb-7">
+              {blog.content.map((line, index) => <p className="text-base  mb-7" key={index}>
                 {line}
               </p>)}
 
