@@ -23,13 +23,15 @@ interface Props {
 const BlogPost = ({ blog }: Props) => {
   return (
     <article className="mb-14">
-      <Image
-        src={blog.image_url}
-        alt={blog.title}
-        width={817}
-        height={500}
-        className="rounded mb-4"
-      />
+      <Link href={`/blogs/${blog.slug}`}>
+        <Image
+          src={blog.image_url}
+          alt={blog.title}
+          width={817}
+          height={500}
+          className="rounded mb-4"
+        />
+      </Link>
       <div className="mb-5">
         <ul className="flex items-center gap-8 text-base text-[#9F9F9F]">
           <li>
@@ -45,7 +47,9 @@ const BlogPost = ({ blog }: Props) => {
           </li>
         </ul>
       </div>
-      <h2 className="font-medium text-3xl mb-3">{blog.title}</h2>
+      <Link href={`/blogs/${blog.slug}`}>
+        <h2 className="font-medium text-3xl mb-3">{blog.title}</h2>
+      </Link>
       <p className="text-base text-[#9F9F9F] mb-7">{blog.introduction}</p>
       <Link
         href={`/blogs/${blog.slug}`}
