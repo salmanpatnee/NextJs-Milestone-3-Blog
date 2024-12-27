@@ -1,26 +1,47 @@
-import InputGroup from "@/app/components/Input";
+"use client";
 import blogs from "@/data/blogs.json";
 import { Calendar, TagIcon, User } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { useForm } from "react-hook-form";
 import Comment from "./components/comment";
-
+import { useState } from "react";
 interface Props {
   params: { slug: string };
 }
 
+interface CommentForm {
+  name: string;
+  email: string;
+  comment: string;
+}
+
 const BlogDetailPage = ({ params: { slug } }: Props) => {
+  const { register, handleSubmit } = useForm<CommentForm>();
+
   const blog = blogs.find((blog) => blog.slug === slug);
 
-  const comment = {
-    author_name: 'Jack', 
-    published_date: '27 Dec, 2024', 
-    comment: 'This is a comment.'
-  }
+  const [comments, setComments] = useState(blog?.comments || []);
 
   if (!blog) {
     notFound();
   }
+
+  const onSubmit = handleSubmit((data) => {
+    const newComment = {
+      id: (comments.length + 1).toString(),
+      author_name: data.name,
+      published_date: new Date().toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      }),
+      comment: data.comment,
+    };
+
+    setComments([...comments, newComment]);
+    
+  });
 
   return (
     <div>
@@ -80,12 +101,16 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                 Back to Home
               </Link>
             </div> */}
-            
-            <p className="text-2xl uppercase font-semibold mb-5">{blog.comments.length || 0} comments on “{blog.title}</p>
 
-              {blog.comments && blog.comments.map(comment => <Comment comment={comment} key={comment.id}/>)}
-            
-            
+            <p className="text-2xl uppercase font-semibold mb-5">
+              {comments?.length || 0} comments on “{blog.title}
+            </p>
+
+            {blog.comments &&
+              comments?.map((comment) => (
+                <Comment comment={comment} key={comment.id} />
+              ))}
+
             <div>
               <h3 className="text-2xl uppercase font-semibold mb-5">
                 Leave a Reply
@@ -95,29 +120,59 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                 marked *
               </p>
 
-              <div>
-                <InputGroup
-                  label="Comment *"
-                  placeholder="Write your thoughts"
-                />
-              </div>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <InputGroup label="Name *" placeholder="Salman A.Ghani" />
+              <form onSubmit={onSubmit}>
+                <div className="mb-4">
+                  <label
+                    className="font-medium text-base mb-2 block text-gray-700"
+                    htmlFor="comment"
+                  >
+                    Comment
+                  </label>
+                  <textarea
+                    id="comment"
+                    className="rounded-lg  border border-[#9F9F9F] w-full px-4 py-4"
+                    placeholder="Your thoughts *"
+                    {...register("comment")}
+                  ></textarea>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="mb-4">
+                    <label
+                      className="font-medium text-base mb-2 block text-gray-700"
+                      htmlFor="name"
+                    >
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      className="rounded-lg border border-[#9F9F9F] w-full px-4 py-4"
+                      placeholder="Salman *"
+                      {...register("name")}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      className="font-medium text-base mb-2 block text-gray-700"
+                      htmlFor="email"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      className="rounded-lg border border-[#9F9F9F] w-full px-4 py-4"
+                      placeholder="salmanpatni92@gmail.com *"
+                      {...register("email")}
+                    />
+                  </div>
                 </div>
                 <div>
-                  <InputGroup
-                    label="Email *"
-                    type="email"
-                    placeholder="salmanpatni92@gmail.com"
-                  />
+                  <button className="bg-primary text-white border border-primary rounded-lg h-12 lg:h-14 px-8 lg:px-16 text-sm lg:text-base  transition">
+                    Post Comment
+                  </button>
                 </div>
-              </div>
-              <div>
-                <button className="bg-primary text-white border border-primary rounded-lg h-12 lg:h-14 px-8 lg:px-16 text-sm lg:text-base  transition">
-                  Post Comment
-                </button>
-              </div>
+              </form>
             </div>
           </div>
         </div>
