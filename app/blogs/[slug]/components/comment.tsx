@@ -1,12 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-type Comment = {
-  id: string;
-  author_name: string;
-  published_date: string;
-  comment: string;
-};
+import { Comment } from "@/app/components/BlogPost";
 
 interface Props {
   comment: Comment;

@@ -2,6 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, TagIcon, User } from "lucide-react";
 
+export type Comment = {
+  id: string;
+  author_name: string;
+  published_date: string;
+  comment: string;
+};
+
 type Blog = {
   id: string | number;
   title: string;
@@ -14,7 +21,7 @@ type Blog = {
   published_data: string;
   author: string;
   conclusion: string;
-  comments?: string[];
+  comments?: Comment[];
 };
 
 interface Props {
