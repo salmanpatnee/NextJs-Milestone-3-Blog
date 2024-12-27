@@ -1,47 +1,12 @@
-# E-commerce Figma to Next.js Static Template
+# Dynamic Blog with Next.js
 
 ## Project Overview
-This project involves converting a Figma-based e-commerce design into a static Next.js template. Below is a brief description of my approach to building this static template.
+This project is a dynamic blog created with Next.js. Blog data is sourced from a JSON file, and dynamic routing is implemented for individual posts. Comments functionality includes client-side validation with React states, error handling, and a success toast.
 
-## Approach
-
-1. **Design Analysis**  
-   I began by thoroughly analyzing the Figma design to understand the layout and structure of the website. I identified reusable components and elements that appear across different pages, such as headers, footers, buttons, and product cards.
-
-2. **Tailwind CSS Customization**  
-   After identifying the design elements, I extracted the primary, secondary, accent, and text colors, as well as the fonts used in the design. I customized the Tailwind CSS configuration to include these colors and fonts, ensuring consistency throughout the template.
-
-3. **Component Creation**  
-   The next step was to build the header and footer as separate components, allowing them to be reused across multiple pages. This ensures that any changes to the layout can be made in one place, maintaining uniformity across the static pages.
-
-4. **Reusable Utility Classes**  
-   To improve development efficiency, I created a set of reusable Tailwind utility classes. These include:
-   - `wrapper`: Acts as a container for centering content (similar to Bootstrap’s container).
-   - `title`: A consistent style for headings throughout the template.
-
-5. **Reusable Components**  
-   I developed a variety of reusable components to save time and keep the code DRY (Don't Repeat Yourself). These components include:
-   - BlogPost
-   - CategoryCard
-   - ProductCard
-   - FeatureSection
-   - HeroSection
-   - Input Fields
-   - Mini Cart
-   - Pagination
-
-6. **Static Page Development**  
-   I created the following pages based on the Figma design as static templates:
-   - [Home](https://q2-uiux-hackathon.vercel.app/)
-   - [Shop](https://q2-uiux-hackathon.vercel.app/shop)
-   - [Product Detail](https://q2-uiux-hackathon.vercel.app/products/respira)
-   - [Cart](https://q2-uiux-hackathon.vercel.app/cart)
-   - [Checkout](https://q2-uiux-hackathon.vercel.app/checkout)
-   - [Contact](https://q2-uiux-hackathon.vercel.app/contact)
-   - [Blog](https://q2-uiux-hackathon.vercel.app/blog)
-
-## Conclusion
-By carefully analyzing the design and breaking it down into reusable components, I was able to efficiently convert the Figma design into a static Next.js template. This template can be easily extended or integrated into a fully dynamic application in the future.
+## Features
+- **Dynamic Routing**: Navigate to individual posts using Next.js dynamic routes.
+- **Comments Section**: React states manage comments dynamically.
+- **Client-Side Validation**: Display errors for invalid input; show success toast upon comment submission.
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
