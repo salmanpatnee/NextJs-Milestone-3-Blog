@@ -11,9 +11,9 @@ import Link from "next/link";
 
 const links = [
   { label: "Home", href: "/" },
-  { label: "Shop", href: "/shop" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { label: "Tutorials", href: "/" },
+  { label: "Categories", href: "/" },
+  { label: "Resources", href: "/" },
 ];
 
 const MobileNavbar = () => {
@@ -35,32 +35,7 @@ const MobileNavbar = () => {
               </ul>
             </nav>
           </SheetDescription>
-          <div className="flex space-x-5 items-center justify-between ">
-            <Link href="/" className="group">
-              <UserRound
-                size={24}
-                className="stroke-current text-black  transition-colors group-hover:stroke-primary"
-              />
-            </Link>
-            <Link href="/" className="group">
-              <Search
-                size={24}
-                className="stroke-current text-black  transition-colors group-hover:stroke-primary"
-              />
-            </Link>
-            <Link href="/" className="group">
-              <Heart
-                size={24}
-                className="stroke-current text-black  transition-colors group-hover:stroke-primary"
-              />
-            </Link>
-            <Link href="/cart" className="group">
-              <ShoppingCart
-                size={24}
-                className="stroke-current text-black  transition-colors group-hover:stroke-primary"
-              />
-            </Link>
-          </div>
+          
         </SheetHeader>
       </SheetContent>
     </Sheet>

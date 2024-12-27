@@ -8,7 +8,7 @@ import MiniCart from "./components/MiniCart";
 const Header = () => {
   return (
     <header className="border border-b py-8">
-      <div className="wrapper flex items-center gap-16">
+      <div className="wrapper flex items-center justify-between gap-16">
         {/* Logo Section */}
         <div className="col logo w-full text-center md:w-auto">
           <Link href="/" className="flex items-center gap-1">
@@ -17,12 +17,12 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation Menu */}
-        <div className="col menu hidden lg:block">
+        <div className="col w-full menu hidden md:block">
           <Navbar />
         </div>
 
         {/* Mobile Navigation Menu */}
-        <div className="lg:hidden w-2/12 text-end">
+        <div className="md:hidden w-2/12 text-end">
           <MobileNavbar />
         </div>
 
