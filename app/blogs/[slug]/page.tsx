@@ -5,47 +5,42 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Calendar, TagIcon, User } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Comment from "./components/comment";
+import toast, { Toaster } from "react-hot-toast";
+
 interface Props {
   params: { slug: string };
 }
 
-
-
 const commentSchema = z.object({
   name: z.string().min(3, "Name is required.").max(255),
-  email: z
-    .string()
-    .email("Email is required")
-    .min(1, "Email is required.")
-    .max(255),
+  email: z.string().email("Email is required").min(1, "Email is required.").max(255),
   comment: z.string().min(1, "Comment is required").max(1000),
 });
 
 type CommentForm = z.infer<typeof commentSchema>;
 
 const BlogDetailPage = ({ params: { slug } }: Props) => {
-  const { register, handleSubmit, reset, formState: {errors} } = useForm<CommentForm>({
-    resolver: zodResolver(commentSchema)
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<CommentForm>({
+    resolver: zodResolver(commentSchema),
   });
-  
- 
 
   const blog = blogs.find((blog) => blog.slug === slug);
-
   const [comments, setComments] = useState(blog?.comments || []);
-  const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
+
+  const commentsRef = useRef<HTMLDivElement>(null); // Ref for comments container
 
   if (!blog) {
     notFound();
   }
+
   const onSubmit = handleSubmit((data) => {
-    setSubmitting(true); // Set submitting state to true
-  
+    setSubmitting(true);
+
     // Simulate delay
     setTimeout(() => {
       const newComment = {
@@ -58,14 +53,20 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
         }),
         comment: data.comment,
       };
-  
-      // Add the new comment and reset the submitting state
-      setComments([...comments, newComment]);
 
-      reset();
-      
-      setSubmitting(false); // Set submitting state back to false
-    }, 2000); // 2-second delay
+      // Add the new comment
+      setComments((prevComments) => [...prevComments, newComment]);
+      reset(); // Clear form fields
+      toast.success("Comment published.");
+
+      setSubmitting(false);
+
+      // Scroll to the last comment
+      setTimeout(() => {
+        const commentElement = commentsRef.current?.lastElementChild;
+        commentElement?.scrollIntoView({ behavior: "smooth" });
+      }, 100); // Small delay to ensure DOM updates
+    }, 2000);
   });
 
   return (
@@ -88,53 +89,34 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                     {blog.author}
                   </li>
                   <li>
-                    <Calendar
-                      size={15}
-                      className="inline-block stroke-[#9F9F9F]"
-                    />{" "}
-                    {blog.published_data}{" "}
-                    {/* Fixed this to display the correct date */}
+                    <Calendar size={15} className="inline-block stroke-[#9F9F9F]" />{" "}
+                    {blog.published_data}
                   </li>
                   <li>
-                    <TagIcon
-                      size={15}
-                      className="inline-block stroke-[#9F9F9F]"
-                    />{" "}
+                    <TagIcon size={15} className="inline-block stroke-[#9F9F9F]" />{" "}
                     Tutorials
                   </li>
                 </ul>
               </div>
               <h1 className="font-medium text-3xl mb-3">{blog.title}</h1>
-
               <p className="text-base mb-4 leading-10">{blog.introduction}</p>
-
               {blog.content.map((line, index) => (
                 <p className="text-base  mb-7" key={index}>
                   {line}
                 </p>
               ))}
-
               <p className="text-base  mb-7">{blog.conclusion}</p>
             </article>
-            {/* <div className="mb-5">
-              <Link
-                href={`/`}
-                className="text-base pb-3 border-black hover:text-primary transition-all mb-5"
-              >
-                {" "}
-                <ArrowLeft className="inline-block me-2" />
-                Back to Home
-              </Link>
-            </div> */}
 
             <p className="text-2xl uppercase font-semibold mb-5">
-              {comments?.length || 0} comments on “{blog.title}
+              {comments?.length || 0} comments on “{blog.title}”
             </p>
 
-            {blog.comments &&
-              comments?.map((comment) => (
+            <div ref={commentsRef}>
+              {comments.map((comment) => (
                 <Comment comment={comment} key={comment.id} />
               ))}
+            </div>
 
             <div>
               <h3 className="text-2xl uppercase font-semibold mb-5">
@@ -155,7 +137,7 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                   </label>
                   <textarea
                     id="comment"
-                    className="rounded-lg  border border-[#9F9F9F] w-full px-4 py-4"
+                    className="rounded-lg border border-[#9F9F9F] w-full px-4 py-4"
                     placeholder="Your thoughts *"
                     {...register("comment")}
                   ></textarea>
@@ -196,8 +178,11 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                   </div>
                 </div>
                 <div>
-                  <button className="bg-primary text-white border border-primary rounded-lg h-12 lg:h-14 px-8 lg:px-16 text-sm lg:text-base  transition" disabled={isSubmitting}>
-                    {isSubmitting ? 'Submitting' : 'Post Comment'} {isSubmitting && <Spinner/>}
+                  <button
+                    className="bg-primary text-white border border-primary rounded-lg h-12 lg:h-14 px-8 lg:px-16 text-sm lg:text-base transition"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Submitting" : "Post Comment"} {isSubmitting && <Spinner />}
                   </button>
                 </div>
               </form>
@@ -205,6 +190,7 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
           </div>
         </div>
       </section>
+      <Toaster />
     </div>
   );
 };
