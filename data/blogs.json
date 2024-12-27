@@ -18,7 +18,27 @@
     "conclusion": "Congratulations! You\u2019ve set up your first Next.js app. Stay tuned for more tutorials as we dive deeper into advanced features like API routes and server-side rendering.",
     "image_url": "/images/blog/laptop.png", 
     "published_data": "26 Dec 2024", 
-    "author": "Admin"
+    "author": "Admin",
+    "comments": [
+      {
+        "id": "1",
+        "author_name": "Alice",
+        "published_date": "27 Dec, 2024",
+        "comment": "This blog was a perfect start for me as a beginner. The step-by-step instructions were clear and easy to follow. Thank you for this guide!"
+      },
+      {
+        "id": "2",
+        "author_name": "Bob",
+        "published_date": "27 Dec, 2024",
+        "comment": "I loved the section on Static Generation. It was well-explained and gave me a good understanding of how Next.js works behind the scenes."
+      },
+      {
+        "id": "3",
+        "author_name": "Charlie",
+        "published_date": "27 Dec, 2024",
+        "comment": "The deployment part was a bit rushed, but overall, this guide is excellent for anyone starting with Next.js."
+      }
+    ]
   },
   {
     "id": "2",
@@ -39,7 +59,27 @@
     "conclusion": "With Next.js, SEO optimization is straightforward. Implement these techniques to enhance your site's visibility and attract more traffic.",
     "image_url": "/images/blog/Getting-Started with-Next.js.jpg", 
     "published_data": "25 Dec 2024", 
-    "author": "Admin"
+    "author": "Admin",
+    "comments": [
+      {
+        "id": "1",
+        "author_name": "Daisy",
+        "published_date": "27 Dec, 2024",
+        "comment": "The tips on Dynamic Meta Tags were spot on! It’s amazing how easy it is to boost SEO with Next.js."
+      },
+      {
+        "id": "2",
+        "author_name": "Edward",
+        "published_date": "27 Dec, 2024",
+        "comment": "I was looking for a detailed explanation of Structured Data, and this blog delivered perfectly. Thank you!"
+      },
+      {
+        "id": "3",
+        "author_name": "Fiona",
+        "published_date": "27 Dec, 2024",
+        "comment": "Incremental Static Regeneration is a game-changer. This blog helped me implement it seamlessly on my project."
+      }
+    ]
   },
   {
     "id": "3",
@@ -61,6 +101,26 @@
     "conclusion": "By following this guide, you\u2019ve built a fully functional blog with Next.js. Customize it further with features like comments or tags to make it unique.",
     "image_url": "/images/blog/Building-a-Blog with-Next.js.jpg", 
     "published_data": "24 Dec 2024", 
-    "author": "Admin"
+    "author": "Admin",
+    "comments": [
+      {
+        "id": "1",
+        "author_name": "George",
+        "published_date": "27 Dec, 2024",
+        "comment": "I followed this guide, and my blog was live within hours! The dynamic routing section was especially helpful."
+      },
+      {
+        "id": "2",
+        "author_name": "Hannah",
+        "published_date": "27 Dec, 2024",
+        "comment": "The CSS styling tips were great. I used Tailwind CSS, and it worked like a charm."
+      },
+      {
+        "id": "3",
+        "author_name": "Ian",
+        "published_date": "27 Dec, 2024",
+        "comment": "I appreciated the reusable blog post component. It made my code much cleaner and maintainable."
+      }
+    ]
   }
 ]

@@ -14,6 +14,7 @@ type Blog = {
   published_data: string;
   author: string;
   conclusion: string;
+  comments?: string[];
 };
 
 interface Props {

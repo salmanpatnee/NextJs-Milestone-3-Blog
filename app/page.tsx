@@ -40,7 +40,7 @@ const BlogPage = () => {
                   <li>
                     <Link
                       href=""
-                      className="flex items-center justify-between text-[#9f9f9f] transition-colors hover:text-black"
+                      className="flex items-center justify-between text-black transition-colors hover:text-primary"
                     >
                       <span>Getting Started</span>
                       <span>2</span>
@@ -49,7 +49,7 @@ const BlogPage = () => {
                   <li>
                     <Link
                       href=""
-                      className="flex items-center justify-between text-[#9f9f9f] transition-colors hover:text-black"
+                      className="flex items-center justify-between text-black transition-colors hover:text-primary"
                     >
                       <span>Advanced Features</span>
                       <span>12</span>
@@ -58,7 +58,7 @@ const BlogPage = () => {
                   <li>
                     <Link
                       href=""
-                      className="flex items-center justify-between text-[#9f9f9f] transition-colors hover:text-black"
+                      className="flex items-center justify-between text-black transition-colors hover:text-primary"
                     >
                       <span>SEO and Performance</span>
                       <span>4</span>
@@ -67,7 +67,7 @@ const BlogPage = () => {
                   <li>
                     <Link
                       href=""
-                      className="flex items-center justify-between text-[#9f9f9f] transition-colors hover:text-black"
+                      className="flex items-center justify-between text-black transition-colors hover:text-primary"
                     >
                       <span>Projects and Use Cases</span>
                       <span>14</span>
@@ -76,7 +76,7 @@ const BlogPage = () => {
                   <li>
                     <Link
                       href=""
-                      className="flex items-center justify-between text-[#9f9f9f] transition-colors hover:text-black"
+                      className="flex items-center justify-between text-black transition-colors hover:text-primary"
                     >
                       <span>Tips and Tools</span>
                       <span>1</span>
