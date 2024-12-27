@@ -1,46 +1,71 @@
 "use client";
+import Spinner from "@/app/components/Spinner";
 import blogs from "@/data/blogs.json";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Calendar, TagIcon, User } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { useForm } from "react-hook-form";
-import Comment from "./components/comment";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import Comment from "./components/comment";
 interface Props {
   params: { slug: string };
 }
 
-interface CommentForm {
-  name: string;
-  email: string;
-  comment: string;
-}
+
+
+const commentSchema = z.object({
+  name: z.string().min(3, "Name is required.").max(255),
+  email: z
+    .string()
+    .email("Email is required")
+    .min(1, "Email is required.")
+    .max(255),
+  comment: z.string().min(1, "Comment is required").max(1000),
+});
+
+type CommentForm = z.infer<typeof commentSchema>;
 
 const BlogDetailPage = ({ params: { slug } }: Props) => {
-  const { register, handleSubmit } = useForm<CommentForm>();
+  const { register, handleSubmit, reset, formState: {errors} } = useForm<CommentForm>({
+    resolver: zodResolver(commentSchema)
+  });
+  
+ 
 
   const blog = blogs.find((blog) => blog.slug === slug);
 
   const [comments, setComments] = useState(blog?.comments || []);
+  const [error, setError] = useState("");
+  const [isSubmitting, setSubmitting] = useState(false);
 
   if (!blog) {
     notFound();
   }
-
   const onSubmit = handleSubmit((data) => {
-    const newComment = {
-      id: (comments.length + 1).toString(),
-      author_name: data.name,
-      published_date: new Date().toLocaleDateString("en-US", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      }),
-      comment: data.comment,
-    };
+    setSubmitting(true); // Set submitting state to true
+  
+    // Simulate delay
+    setTimeout(() => {
+      const newComment = {
+        id: (comments.length + 1).toString(),
+        author_name: data.name,
+        published_date: new Date().toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        }),
+        comment: data.comment,
+      };
+  
+      // Add the new comment and reset the submitting state
+      setComments([...comments, newComment]);
 
-    setComments([...comments, newComment]);
-    
+      reset();
+      
+      setSubmitting(false); // Set submitting state back to false
+    }, 2000); // 2-second delay
   });
 
   return (
@@ -134,6 +159,7 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                     placeholder="Your thoughts *"
                     {...register("comment")}
                   ></textarea>
+                  {errors.comment && <p className="text-xs text-red-600">{errors.comment.message}</p>}
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="mb-4">
@@ -150,6 +176,7 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                       placeholder="Salman *"
                       {...register("name")}
                     />
+                    {errors.name && <p className="text-xs text-red-600">{errors.name.message}</p>}
                   </div>
                   <div className="mb-4">
                     <label
@@ -165,11 +192,12 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                       placeholder="salmanpatni92@gmail.com *"
                       {...register("email")}
                     />
+                    {errors.email && <p className="text-xs text-red-600">{errors.email.message}</p>}
                   </div>
                 </div>
                 <div>
-                  <button className="bg-primary text-white border border-primary rounded-lg h-12 lg:h-14 px-8 lg:px-16 text-sm lg:text-base  transition">
-                    Post Comment
+                  <button className="bg-primary text-white border border-primary rounded-lg h-12 lg:h-14 px-8 lg:px-16 text-sm lg:text-base  transition" disabled={isSubmitting}>
+                    {isSubmitting ? 'Submitting' : 'Post Comment'} {isSubmitting && <Spinner/>}
                   </button>
                 </div>
               </form>
