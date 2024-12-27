@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Comment from "./components/comment";
 import toast, { Toaster } from "react-hot-toast";
+import ErrorMessage from "@/app/components/ErrorMessage";
 
 interface Props {
   params: { slug: string };
@@ -17,14 +18,23 @@ interface Props {
 
 const commentSchema = z.object({
   name: z.string().min(3, "Name is required.").max(255),
-  email: z.string().email("Email is required").min(1, "Email is required.").max(255),
+  email: z
+    .string()
+    .email("Email is required")
+    .min(1, "Email is required.")
+    .max(255),
   comment: z.string().min(1, "Comment is required").max(1000),
 });
 
 type CommentForm = z.infer<typeof commentSchema>;
 
 const BlogDetailPage = ({ params: { slug } }: Props) => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<CommentForm>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<CommentForm>({
     resolver: zodResolver(commentSchema),
   });
 
@@ -89,11 +99,17 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                     {blog.author}
                   </li>
                   <li>
-                    <Calendar size={15} className="inline-block stroke-[#9F9F9F]" />{" "}
+                    <Calendar
+                      size={15}
+                      className="inline-block stroke-[#9F9F9F]"
+                    />{" "}
                     {blog.published_data}
                   </li>
                   <li>
-                    <TagIcon size={15} className="inline-block stroke-[#9F9F9F]" />{" "}
+                    <TagIcon
+                      size={15}
+                      className="inline-block stroke-[#9F9F9F]"
+                    />{" "}
                     Tutorials
                   </li>
                 </ul>
@@ -141,7 +157,7 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                     placeholder="Your thoughts *"
                     {...register("comment")}
                   ></textarea>
-                  {errors.comment && <p className="text-xs text-red-600">{errors.comment.message}</p>}
+                  <ErrorMessage>{errors.comment?.message}</ErrorMessage>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="mb-4">
@@ -158,7 +174,7 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                       placeholder="Salman *"
                       {...register("name")}
                     />
-                    {errors.name && <p className="text-xs text-red-600">{errors.name.message}</p>}
+                    <ErrorMessage>{errors.name?.message}</ErrorMessage>
                   </div>
                   <div className="mb-4">
                     <label
@@ -174,7 +190,7 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                       placeholder="salmanpatni92@gmail.com *"
                       {...register("email")}
                     />
-                    {errors.email && <p className="text-xs text-red-600">{errors.email.message}</p>}
+                    <ErrorMessage>{errors.email?.message}</ErrorMessage>
                   </div>
                 </div>
                 <div>
@@ -182,7 +198,8 @@ const BlogDetailPage = ({ params: { slug } }: Props) => {
                     className="bg-primary text-white border border-primary rounded-lg h-12 lg:h-14 px-8 lg:px-16 text-sm lg:text-base transition"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Submitting" : "Post Comment"} {isSubmitting && <Spinner />}
+                    {isSubmitting ? "Submitting" : "Post Comment"}{" "}
+                    {isSubmitting && <Spinner />}
                   </button>
                 </div>
               </form>
